@@ -7,7 +7,7 @@ function Footer(){
 
     return (<footer>
         <p>
-            All copyright preserved to Teaha Morad {year}
+            All copyright preserved to Teaha Morad & Azbarga Adim {year}
         </p>
     </footer>)
 

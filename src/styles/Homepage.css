@@ -1,0 +1,28 @@
+.container{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    flex-direction: row;
+    background-color: rgb(170, 38, 38);
+    height: 950px;
+    border-radius: 30px;
+    margin-top: 20px;
+    align-items: center;
+    flex-wrap: nowrap;
+    
+}
+
+
+
+.h1{
+    position: absolute;
+    text-align: center;
+    align-self: flex-start;
+    background-color: azure;
+} 
+
+.form{
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+}
