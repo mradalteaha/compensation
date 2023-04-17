@@ -2,7 +2,7 @@ import React ,{useState} from 'react'
 import '../../styles/Homepage.css'
 import {utils,read} from 'xlsx';
 import { useNavigate } from 'react-router-dom';
-
+import moment from 'moment/moment';
 
 
 export default function HomePage(props){
@@ -40,10 +40,13 @@ export default function HomePage(props){
 
 
       function fixData(){
+        console.log(Data)
         const columnsName = Data[0]
-      /*   console.log('column names')
-        console.log(columnsName) */
+        console.log('column names')
+        console.log(columnsName)
         const usersArray = Data.slice(1,Data.length)
+        console.log('userarray')
+        console.log(usersArray)
         
         const mappedArray = usersArray.map( user =>{
             let ob = {}
@@ -51,9 +54,16 @@ export default function HomePage(props){
                 ob[columnsName[name]] = user[name] ? user[name] : 0; 
                 
               }
-              ob['id'] = user['__rowNum__']
+              ob["id"] = user['__EMPTY']
+              //fixing the dates
+              ob["תאריך לידה"]=new Date(moment(user['__EMPTY_4']).add(1,'hours').toString())
+              ob["תאריך תחילת עבודה"] = new Date(moment(ob["תאריך תחילת עבודה"]).add(1,'hours').toString())
+              ob["תאריך קבלת סעיף 14"] = new Date(moment(ob["תאריך קבלת סעיף 14"]).add(1,'hours').toString())
+              ob["תאריך עזיבה"] = new Date(moment(ob["תאריך עזיבה"]).add(1,'hours').toString())
               ob['גיל'] = Math.floor((new Date().getTime() - Date.parse(ob['תאריך לידה']))/31556952000) //calculate age in years 
-            return ob
+              
+              //console.log(ob)
+              return ob
         })
 
         
