@@ -296,9 +296,9 @@ function sixthSection(userob){
 
 
 function getPx(t,userob){
-  if(t === 0){
+ /*  if(t === 0){
     return 1
-  }
+  } */
   const {age ,gender } =userob
   const deathProp = deathPropelityQ3(age+t,gender)
   const firedProp = firedPropelityQ1(age+t)
