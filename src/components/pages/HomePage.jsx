@@ -73,7 +73,7 @@ export default function HomePage(props){
                 ob['וותק'] = Math.round(((new Date().getTime() - Date.parse(ob["תאריך תחילת עבודה"]))/31556952000)/0.5)*0.5
               } 
 
-              //ob['compensation'] =wrapperFunction(ob)
+              ob['compensation'] =wrapperFunction(ob)
               
               //console.log(ob)
               return ob
@@ -82,7 +82,7 @@ export default function HomePage(props){
         
 /*         console.log(mappedArray[0]) 
  */       
-            setTest(mappedArray[16])
+            setTest(mappedArray[3])
             console.log(testuser)
             if(testuser){
               let test  =wrapperFunction(testuser)
@@ -91,7 +91,7 @@ export default function HomePage(props){
             }
          
 
-      // navigate('/ShowData',{state:{userData:mappedArray}})
+       navigate('/ShowData',{state:{userData:mappedArray}})
         
        
 
@@ -177,7 +177,7 @@ function secondSection(userob){
   const LSS =(lastsalary*seniority*(1-section14rate))
 
   for( t=0 ;t<(W-age-2); t++){
-    compensation = compensation +((LSS)*((Math.pow((1+salarygrowth),t+0.5)*getPx(t,userobCopy)*deathPropelityQ3(age +t,gender))/(Math.pow((1+getDiscountRate(t)),t+0.5))))
+    compensation = compensation +((lastsalary*seniority*(1-section14rate))*((Math.pow((1+salarygrowth),t+0.5)*getPx(t,userobCopy)*deathPropelityQ3(age +t,gender))/(Math.pow((1+getDiscountRate(t)),t+0.5))))
   }
 
   console.log('second compensation')
@@ -234,7 +234,7 @@ function forthSection(userob){
 
   const LSS =(lastsalary*seniority*(1-section14rate))
  
-  compensation = (LSS*((Math.pow((1+salarygrowth),W-age+0.5)*getPx(W-age-1,userobCopy)*firedPropelityQ1(W-1))/(Math.pow((1+getDiscountRate(0)),W-age+0.5))))
+  compensation = (lastsalary*seniority*(1-section14rate)*((Math.pow((1+salarygrowth),W-age+0.5)*getPx(W-age-1,userobCopy)*firedPropelityQ1(W-1))/(Math.pow((1+getDiscountRate(0)),W-age+0.5))))
   console.log('forth compensation')
   console.log(compensation)
   return compensation
@@ -260,7 +260,7 @@ function fifthSection(userob){
 
   const LSS =(lastsalary*seniority*(1-section14rate))
  
-  compensation = (LSS*((Math.pow((1+salarygrowth),W-age+0.5)*getPxx(W-1,userobCopy)*firedPropelityQ1(W-1))/(Math.pow((1+getDiscountRate(0)),W-age+0.5))))+(assetsvalue * getPx(W-age-1,userobCopy) * resignationPropelityQ2(W-1) )
+  compensation = (lastsalary*seniority*(1-section14rate)*((Math.pow((1+salarygrowth),W-age+0.5)*getPxx(W-1,userobCopy)*firedPropelityQ1(W-1))/(Math.pow((1+getDiscountRate(0)),W-age+0.5))))+(assetsvalue * getPx(W-age-1,userobCopy) * resignationPropelityQ2(W-1) )
   console.log('fifth compensation')
   console.log(compensation)
 
@@ -285,7 +285,7 @@ function sixthSection(userob){
 
   const LSS =(lastsalary*seniority*(1-section14rate))
 
-  compensation = (LSS*((Math.pow((1+salarygrowth),W-age)*getPxx(W-1,userobCopy)*(1- firedPropelityQ1(W-1) - resignationPropelityQ2(W-1) - deathPropelityQ3(W-1) ))/(Math.pow((1+getDiscountRate(W-age-1)),W-age))))
+  compensation = (lastsalary*seniority*(1-section14rate)*((Math.pow((1+salarygrowth),W-age)*getPxx(W-1,userobCopy)*(1- firedPropelityQ1(W-1) - resignationPropelityQ2(W-1) - deathPropelityQ3(W-1) ))/(Math.pow((1+getDiscountRate(W-age-1)),W-age))))
   
   console.log('sixth compensation')
   console.log(compensation)
