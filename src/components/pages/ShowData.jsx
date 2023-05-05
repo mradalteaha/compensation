@@ -27,7 +27,7 @@ export default function ShowData(props){
         </tr>
         </thead>
           <tbody>
-            {userData.filter(item => item['compensation'] > 0).map((item) => (
+            {userData.map((item) => (
               <tr key={item[tableHead[0]]}>
               <td>{item[tableHead[0]]}</td>
                 <td>{item[tableHead[1]]}</td>
