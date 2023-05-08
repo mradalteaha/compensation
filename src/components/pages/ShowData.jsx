@@ -17,6 +17,8 @@ export default function ShowData(props){
     const tableHead = ["id","שם","שם משפחה" ,"מין" ,"תאריך לידה","גיל",
     "תאריך תחילת עבודה", "שכר" ,"תאריך  קבלת סעיף 14", "אחוז סעיף 14" ,"שווי נכס",
     "הפקדות", "תאריך עזיבה" , "תשלום מהנכס" ,"השלמה בצ'ק","סיבת עזיבה","וותק"] */
+    console.log('printing the data')
+    console.table(userData)
 
     
     return (
@@ -27,7 +29,7 @@ export default function ShowData(props){
         </tr>
         </thead>
           <tbody>
-            {userData.map((item) => (
+            {userData.filter(e=> typeof(e['compensation'])!=='NaN' ).map((item) => (
               <tr key={item[tableHead[0]]}>
               <td>{item[tableHead[0]]}</td>
                 <td>{item[tableHead[1]]}</td>

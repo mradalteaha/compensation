@@ -73,7 +73,15 @@ export default function HomePage(props){
                 ob['וותק'] = Math.round(((new Date().getTime() - Date.parse(ob["תאריך תחילת עבודה"]))/31556952000)/0.5)*0.5
               } 
 
-              ob['compensation'] =wrapperFunction(ob)
+              if(ob['וותק'] > 2 ){
+                ob['compensation'] = Math.max(wrapperFunction(ob),ob['שווי נכס']) 
+              }else if(ob['וותק'] <= 2){
+                if(ob["סיבת עזיבה"] ==='התפטרות'){
+                  ob['compensation'] =0
+                }else{
+                  ob['compensation'] =wrapperFunction(ob)
+                }
+              }
               
               //console.log(ob)
               return ob
@@ -99,14 +107,14 @@ export default function HomePage(props){
 
     return (<div className='container'>
         
-        <h1 className='h1'> Hello From HomePage</h1>
-      
+        
         <form className='form' onSubmit={handleSubmit}>
+        <h1> Upload File</h1>
       <input type="file" onChange={handleFileChange} />
       <button type="submit">Upload</button>
     </form>
 
-    <button onClick={fixData}> fix function</button>
+    <button className='button' onClick={fixData}> fix function</button>
         
     </div>)
 
