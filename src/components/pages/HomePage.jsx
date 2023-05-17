@@ -66,6 +66,8 @@ export default function HomePage(props){
               ob["אחוז סעיף 14"] = ob["אחוז סעיף 14"]!== 0 ? ob["אחוז סעיף 14"]/100 : 0
               ob['גיל'] = Math.round((new Date(startPeriod).getTime() - Date.parse(ob['תאריך לידה']))/31556952000) //calculate age in years
               ob["שכר"] = Math.round(ob["שכר"]) 
+              ob['שווי נכס']= Math.round(ob['שווי נכס']) 
+              ob["הפקדות"] = Math.round(ob["הפקדות"])
 
               if(ob["סיבת עזיבה"]!== 0){
                 ob['וותק'] = Math.round(((new Date(moment(ob["תאריך עזיבה"]).add(1,'hours').toString()).getTime() - Date.parse(ob["תאריך תחילת עבודה"]))/31556952000)/0.5)*0.5
@@ -182,7 +184,6 @@ function secondSection(userob){
     W =64;
   }
   let t=0 
-  const LSS =(lastsalary*seniority*(1-section14rate))
 
   for( t=0 ;t<(W-age-2); t++){
     compensation = compensation +((lastsalary*seniority*(1-section14rate))*((Math.pow((1+salarygrowth),t+0.5)*getPx(t,userobCopy)*deathPropelityQ3(age +t,gender))/(Math.pow((1+getDiscountRate(t)),t+0.5))))
@@ -240,7 +241,6 @@ function forthSection(userob){
   console.log('lastS , seniority , age , gender , salarygrowth ,')
   console.log(lastsalary,seniority ,age , gender , salarygrowth) */
 
-  const LSS =(lastsalary*seniority*(1-section14rate))
  
   compensation = (lastsalary*seniority*(1-section14rate)*((Math.pow((1+salarygrowth),W-age+0.5)*getPx(W-age-1,userobCopy)*firedPropelityQ1(W-1))/(Math.pow((1+getDiscountRate(0)),W-age+0.5))))
   console.log('forth compensation')
@@ -266,7 +266,6 @@ function fifthSection(userob){
     W =64;
   }
 
-  const LSS =(lastsalary*seniority*(1-section14rate))
  
   compensation = (lastsalary*seniority*(1-section14rate)*((Math.pow((1+salarygrowth),W-age+0.5)*getPxx(W-1,userobCopy)*firedPropelityQ1(W-1))/(Math.pow((1+getDiscountRate(0)),W-age+0.5))))+(assetsvalue * getPx(W-age-1,userobCopy) * resignationPropelityQ2(W-1) )
   console.log('fifth compensation')
@@ -291,7 +290,6 @@ function sixthSection(userob){
     W =64;
   }
 
-  const LSS =(lastsalary*seniority*(1-section14rate))
 
   compensation = (lastsalary*seniority*(1-section14rate)*((Math.pow((1+salarygrowth),W-age)*getPxx(W-1,userobCopy)*(1- firedPropelityQ1(W-1) - resignationPropelityQ2(W-1) - deathPropelityQ3(W-1) ))/(Math.pow((1+getDiscountRate(W-age-1)),W-age))))
   
